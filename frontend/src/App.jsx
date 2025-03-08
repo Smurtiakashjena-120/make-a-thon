@@ -34,7 +34,12 @@ function App() {
     setFiles((prev) => prev.filter((file) => file.name !== fileName));
     setOpenedFiles((prev) => prev.filter((file) => file.name !== fileName)); // Also remove from opened files
   };
-
+  // ✅ Handle manual file creation
+  const handleCreateFile = (fileName) => {
+    const newFile = { name: fileName, content: "" };
+    setFiles([...files, newFile]);
+    setOpenedFiles([...openedFiles, newFile]); // Open in editor immediately
+  };
 
   const handleFileEdit = (fileName, newContent) => {
     setOpenedFiles((prev) =>
@@ -46,13 +51,14 @@ function App() {
 
   return (
     <div className="app-container">
-      <Sidebar 
-  files={files} 
-  onFileUpload={handleFileUpload} 
-  onFileClick={handleFileClick} 
-  onFileRemove={handleFileRemove} // ✅ Make sure this is passed
-/>
 
+      <Sidebar 
+        files={files} 
+        onFileUpload={handleFileUpload} 
+        onFileClick={handleFileClick} 
+        onFileRemove={handleFileRemove}
+        onCreateFile={handleCreateFile} // Pass the function
+      />
       <Codebar openedFiles={openedFiles} onEditFile={handleFileEdit} />
     </div>
   );

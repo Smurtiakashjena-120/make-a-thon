@@ -104,3 +104,12 @@
   white-space: pre-wrap;
   border: 1px solid #444;
 }
+.empty-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Full height of parent container */
+  text-align: center;
+  color: gray;
+  font-size: 18px;
+}

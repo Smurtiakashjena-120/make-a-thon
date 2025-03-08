@@ -86,4 +86,29 @@
   .close-btn:hover {
     color: #474343;
   }
+  .create-file {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  
+  .create-file input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .create-file button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .create-file button:hover {
+    background-color: #0056b3;
+  }
   
