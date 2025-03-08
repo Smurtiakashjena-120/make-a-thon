@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SaveButton from "./SaveButton";
 import "../styles/codebar.css";
 
 function Codebar({ openedFiles, onEditFile }) {
   const [output, setOutput] = useState("");
   const [isTerminalVisible, setIsTerminalVisible] = useState(false);
+
+  useEffect(() => {
+    // Show terminal as soon as a file is opened
+    if (openedFiles.length > 0) {
+      setIsTerminalVisible(true);
+    }
+  }, [openedFiles]); // Runs when openedFiles changes
 
   const runCode = (code, name) => {
     console.log(`Running Code from File: ${name}\n`, code);
@@ -25,10 +32,7 @@ function Codebar({ openedFiles, onEditFile }) {
             <h3>{file.name}</h3>
             <textarea
               value={file.content}
-              onChange={(e) => {
-                onEditFile(file.name, e.target.value);
-                setIsTerminalVisible(true);
-              }}
+              onChange={(e) => onEditFile(file.name, e.target.value)}
               className="editor"
             />
             <div className="buttons">
